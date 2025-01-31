@@ -1,10 +1,10 @@
 
-import RegistrarUsuario from '../src/core/usuario/RegistrarUsuario';
-import BancoEmMemoria from '../src/adapters/db/UsuarioEmMemoria';
-import InverterSenha from '../src/adapters/auth/InverterSenha';
-import SenhaComEspaco from '../src/adapters/auth/SenhaComEspaco';
-import CriptoReal from '../src/adapters/auth/CriptoReal';
-import ColecaoUsuarioDB from '../src/adapters/db/knex/ColecaoUsuarioDB';
+import RegistrarUsuario from '../../src/core/usuario/RegistrarUsuario';
+import BancoEmMemoria from '../../src/adapters/db/UsuarioEmMemoria';
+import InverterSenha from '../../src/adapters/auth/InverterSenha';
+import SenhaComEspaco from '../../src/adapters/auth/SenhaComEspaco';
+import CriptoReal from '../../src/adapters/auth/CriptoReal';
+import ColecaoUsuarioDB from '../../src/adapters/db/knex/ColecaoUsuarioDB';
 test('Deve registrar um usuário invertendo a senha', async () => {
     const colecao = new BancoEmMemoria();
     const provedorCripto = new InverterSenha()
