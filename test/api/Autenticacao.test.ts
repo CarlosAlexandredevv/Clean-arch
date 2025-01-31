@@ -26,6 +26,7 @@ test('Deve logar com email e senha corretos', async () => {
         senha: usuario.senha
     })
     expect(resp.status).toBe(200)
-    expect(resp.data.nome).toBe("Leticia Estrela")
-    expect(resp.data.email).toBe(usuario.email)
+    expect(resp.data.usuario.nome).toBe("Leticia Estrela")
+    expect(resp.data.usuario.email).toBe(usuario.email)
+    expect(resp.data).toHaveProperty('token')
 })

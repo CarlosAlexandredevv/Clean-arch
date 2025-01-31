@@ -8,14 +8,14 @@ export default class LoginUsuarioController{
     ){
         servidor.post('/login', async (req, res) => {
             try{
-              const usuario = await casoDeUso.executar(
-                    req.body.email,
-                    req.body.senha
+              const resposta = await casoDeUso.executar({
+                    email: req.body.email,
+                    senha: req.body.senha
+              }       
                 )
                 res.status(200).json({
-                    id: usuario.id,
-                    nome: usuario.nome,
-                    email: usuario.email
+                    usuario: resposta.usuario,
+                    token: resposta.token
                 })
             } catch(err: any){
                 res.status(403).send(err.message)
