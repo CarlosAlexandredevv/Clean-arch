@@ -11,6 +11,7 @@ import LoginUsuarioController from "./controllers/LoginUsuarioController";
 import JwtAdapter from "./adapters/auth/JwtAdapter";
 import SalvarTransacao from "./core/transacao/SalvarTransacao";
 import SalvarTransacaoController from "./controllers/SalvarTransacaoController";
+import UsuarioMiddlware from "./controllers/UsuarioMiddleware";
 
 const app = express()
 app.use(express.json())
@@ -29,5 +30,7 @@ const loginUsuario = new LoginUsuario(colecaoUsuario, provedorCripto, provedorTo
 new RegistrarUsuarioController(app, registrarUsuario)
 new LoginUsuarioController(app, loginUsuario)
 
+const usuarioMiddleware = UsuarioMiddlware(colecaoUsuario, provedorToken)
+
 const salvarTransacao = new SalvarTransacao()
-new SalvarTransacaoController(app, salvarTransacao)
+new SalvarTransacaoController(app, salvarTransacao, usuarioMiddleware)

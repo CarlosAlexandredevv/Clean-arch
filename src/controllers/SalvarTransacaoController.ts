@@ -5,7 +5,8 @@ import SalvarTransacao from "../core/transacao/SalvarTransacao";
 export default class SalvarTransacaoController{
     constructor(
         private servidor: Express,
-        private casoDeUso: SalvarTransacao
+        private casoDeUso: SalvarTransacao,
+        ...middleware: any[]
     ){
         const fn = async(req:Request, res: Response) => {
             try{
@@ -16,6 +17,6 @@ export default class SalvarTransacaoController{
             }
         }
 
-        servidor.post('/transacoes', fn)
+        servidor.post('/transacoes',middleware, fn)
     }
 }
