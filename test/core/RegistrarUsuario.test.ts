@@ -3,7 +3,7 @@ import RegistrarUsuario from '../../src/core/usuario/RegistrarUsuario';
 import BancoEmMemoria from '../../src/adapters/db/UsuarioEmMemoria';
 import InverterSenha from '../../src/adapters/auth/InverterSenha';
 import SenhaComEspaco from '../../src/adapters/auth/SenhaComEspaco';
-import CriptoReal from '../../src/adapters/auth/CriptoReal';
+import BcryptAdapter from '../../src/adapters/auth/BcryptAdapter';
 import ColecaoUsuarioDB from '../../src/adapters/db/knex/ColecaoUsuarioDB';
 test('Deve registrar um usuário invertendo a senha', async () => {
     const colecao = new BancoEmMemoria();
@@ -31,7 +31,7 @@ test('Deve registrar um usuário com senha com espaços', async () => {
 
 test('Deve registrar um usuário com senha criptografada', async() => {
     const colecao = new BancoEmMemoria();
-    const provedorCripto = new CriptoReal()
+    const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto);
 
     const usuario = await casoDeUso.executar('carlos2','carlos2@teste.com', '123456');
@@ -45,7 +45,7 @@ test('Deve registrar um usuário com senha criptografada', async() => {
 
 test('Deve lançar erro ao cadastrar usuário já cadastrado', async() => {
     const colecao = new BancoEmMemoria();
-    const provedorCripto = new CriptoReal()
+    const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto);
 
     const nome = 'carlos';
@@ -61,7 +61,7 @@ test('Deve lançar erro ao cadastrar usuário já cadastrado', async() => {
 
 test.skip('Deve registrar um usuário no banco real', async () => {
     const colecao = new ColecaoUsuarioDB();
-    const provedorCripto = new CriptoReal()
+    const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto);
 
     const usuario = await casoDeUso.executar('carlos','carlos@teste.com', '123456');
