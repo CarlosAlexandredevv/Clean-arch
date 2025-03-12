@@ -1,9 +1,10 @@
 import Usuario from "../../src/core/usuario/Usuario";
-export default{
-    completo:{
+
+export default {
+    completo: {
         id: '1',
-        nome: 'Carlos',
-        email: 'carlos@gmail.com',
+        nome: 'João da Silva da Silva',
+        email: 'jjjoao@zmail.com.br',
         senha: '123456'
-    } as Usuario
+    } as Usuario,
 }
